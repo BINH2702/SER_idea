@@ -115,7 +115,7 @@ def main(args=None):
     model = get_model(args, backbone, loss, dataset.get_transform()) # get_model function 
 
     if args.distributed == 'dp':
-        model.net = make_dp(model.net)
+        model.net = make_dp(model.net) # DataParallel
         model.to('cuda:0')
         args.conf_ngpus = torch.cuda.device_count()
     elif args.distributed == 'ddp':
