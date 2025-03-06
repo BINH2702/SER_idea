@@ -7,7 +7,7 @@ from models.utils.continual_model import ContinualModel
 from utils.buffer import Buffer
 from datasets import get_dataset
 
-from models.aux.unisal import UNISAL
+from models.auxiliary.unisal import UNISAL
 from utils.mnp import *
 from utils.saliency_metrics import KLDLoss
 from copy import deepcopy
