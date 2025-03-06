@@ -43,7 +43,8 @@ def lecun_fix():
 
 
 def parse_args():
-    parser = ArgumentParser(description='mammoth', allow_abbrev=False)
+    parser = ArgumentParser(description='mammoth', allow_abbrev=False) 
+    # 
     parser.add_argument('--model', type=str, required=True,
                         help='Model name.', choices=get_all_models())
     parser.add_argument('--load_best_args', action='store_true',
@@ -111,7 +112,7 @@ def main(args=None):
 
     backbone = dataset.get_backbone()
     loss = dataset.get_loss()
-    model = get_model(args, backbone, loss, dataset.get_transform())
+    model = get_model(args, backbone, loss, dataset.get_transform()) # get_model function 
 
     if args.distributed == 'dp':
         model.net = make_dp(model.net)

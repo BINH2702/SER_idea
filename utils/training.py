@@ -128,7 +128,7 @@ def train(model: ContinualModel, dataset: ContinualDataset,
         wandb.init(project=args.wandb_project, entity=args.wandb_entity, config=vars(args))
         args.wandb_url = wandb.run.get_url()
 
-    model.net.to(model.device)
+    model.net.to(model.device) # model.net
     if hasattr(model, 'saliency_net'):
         model.saliency_net.to(model.device)
     results, results_mask_classes = [], []
