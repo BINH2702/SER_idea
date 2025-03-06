@@ -149,7 +149,7 @@ def train(model: ContinualModel, dataset: ContinualDataset,
         model.net.train()
         train_loader, test_loader = dataset.get_data_loaders()
         if hasattr(model, 'begin_task'):
-            model.begin_task(dataset)
+            model.begin_task(dataset) # call the begin_task method of the model
 
         if t and not args.ignore_other_metrics:
             accs = evaluate(model, dataset, last=True)
@@ -158,7 +158,7 @@ def train(model: ContinualModel, dataset: ContinualDataset,
                 results_mask_classes[t-1] = results_mask_classes[t-1] + accs[1]
 
         scheduler = dataset.get_scheduler(model, args)
-        print(f"Task: {t+1}; num_images: {len(train_loader.dataset.data)}")
+        print(f"Task: {t+1}; num_images: {len(train_loader.dataset.data)}")        
         for epoch in range(model.args.n_epochs):
             if args.model == 'joint':
                 continue
@@ -174,7 +174,7 @@ def train(model: ContinualModel, dataset: ContinualDataset,
                     labels = labels.to(model.device)
                     not_aug_inputs = not_aug_inputs.to(model.device)
                     logits = logits.to(model.device)
-                    loss = model.meta_observe(inputs, labels, not_aug_inputs, logits)
+                    loss = model.meta_observe(inputs, labels, not_aug_inputs, logits) # call the meta_observe method of the model
                 else:
                     inputs, labels, not_aug_inputs = data
                     if isinstance(inputs, list):
